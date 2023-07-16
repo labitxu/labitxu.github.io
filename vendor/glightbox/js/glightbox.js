@@ -381,8 +381,10 @@
     }
   }
   function injectAssets(url, waitFor, callback) {
+  function inject(url, waitFor, callback) {
     if (isNil(url)) {
       console.error('Inject assets error');
+      console.error('Inject  error');
       return;
     }
 
@@ -1786,11 +1788,13 @@
     slideMedia.insertBefore(createHTML('<div class="gvideo-wrapper"></div>'), slideMedia.firstChild);
     var videoWrapper = slide.querySelector('.gvideo-wrapper');
     injectAssets(this.settings.plyr.css, 'Plyr');
+    inject(this.settings.plyr.css, 'Plyr');
     var url = data.href;
     var provider = data === null || data === void 0 ? void 0 : data.videoProvider;
     var customPlaceholder = false;
     slideMedia.style.maxWidth = data.width;
     injectAssets(this.settings.plyr.js, 'Plyr', function () {
+    inject(this.settings.plyr.js, 'Plyr', function () {
       if (!provider && url.match(/vimeo\.com\/([0-9]*)/)) {
         provider = 'vimeo';
       }
